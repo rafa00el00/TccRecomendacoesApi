@@ -1,0 +1,12 @@
+C:\Users\rafae\source\repos\TCCApi.RecomendacoesApi\TCCApi.RecomendacoesTexto\bin\Debug\netcoreapp2.0\TCCApi.RecomendacoesTexto.deps.json
+C:\Users\rafae\source\repos\TCCApi.RecomendacoesApi\TCCApi.RecomendacoesTexto\bin\Debug\netcoreapp2.0\TCCApi.RecomendacoesTexto.runtimeconfig.json
+C:\Users\rafae\source\repos\TCCApi.RecomendacoesApi\TCCApi.RecomendacoesTexto\bin\Debug\netcoreapp2.0\TCCApi.RecomendacoesTexto.runtimeconfig.dev.json
+C:\Users\rafae\source\repos\TCCApi.RecomendacoesApi\TCCApi.RecomendacoesTexto\bin\Debug\netcoreapp2.0\TCCApi.RecomendacoesTexto.dll
+C:\Users\rafae\source\repos\TCCApi.RecomendacoesApi\TCCApi.RecomendacoesTexto\obj\Debug\netcoreapp2.0\TCCApi.RecomendacoesTexto.csprojResolveAssemblyReference.cache
+C:\Users\rafae\source\repos\TCCApi.RecomendacoesApi\TCCApi.RecomendacoesTexto\obj\Debug\netcoreapp2.0\TCCApi.RecomendacoesTexto.csproj.CoreCompileInputs.cache
+C:\Users\rafae\source\repos\TCCApi.RecomendacoesApi\TCCApi.RecomendacoesTexto\obj\Debug\netcoreapp2.0\TCCApi.RecomendacoesTexto.AssemblyInfoInputs.cache
+C:\Users\rafae\source\repos\TCCApi.RecomendacoesApi\TCCApi.RecomendacoesTexto\obj\Debug\netcoreapp2.0\TCCApi.RecomendacoesTexto.AssemblyInfo.cs
+C:\Users\rafae\source\repos\TCCApi.RecomendacoesApi\TCCApi.RecomendacoesTexto\bin\Debug\netcoreapp2.0\TCCApi.RecomendacoesTexto.pdb
+C:\Users\rafae\source\repos\TCCApi.RecomendacoesApi\TCCApi.RecomendacoesTexto\obj\Debug\netcoreapp2.0\TCCApi.RecomendacoesTexto.dll
+C:\Users\rafae\source\repos\TCCApi.RecomendacoesApi\TCCApi.RecomendacoesTexto\obj\Debug\netcoreapp2.0\TCCApi.RecomendacoesTexto.pdb
+C:\Users\rafae\source\repos\TCCApi.RecomendacoesApi\TCCApi.RecomendacoesTexto\bin\Debug\netcoreapp2.0\stopwords.txt

@@ -1,0 +1,11 @@
+C:\Users\rafae\source\repos\TCCApi.RecomendacoesApi\TCCApi.RecomendacoesApi\bin\Debug\netcoreapp2.0\TCCApi.RecomendacoesApi.deps.json
+C:\Users\rafae\source\repos\TCCApi.RecomendacoesApi\TCCApi.RecomendacoesApi\bin\Debug\netcoreapp2.0\TCCApi.RecomendacoesApi.runtimeconfig.json
+C:\Users\rafae\source\repos\TCCApi.RecomendacoesApi\TCCApi.RecomendacoesApi\bin\Debug\netcoreapp2.0\TCCApi.RecomendacoesApi.runtimeconfig.dev.json
+C:\Users\rafae\source\repos\TCCApi.RecomendacoesApi\TCCApi.RecomendacoesApi\bin\Debug\netcoreapp2.0\TCCApi.RecomendacoesApi.dll
+C:\Users\rafae\source\repos\TCCApi.RecomendacoesApi\TCCApi.RecomendacoesApi\obj\Debug\netcoreapp2.0\TCCApi.RecomendacoesApi.csprojResolveAssemblyReference.cache
+C:\Users\rafae\source\repos\TCCApi.RecomendacoesApi\TCCApi.RecomendacoesApi\obj\Debug\netcoreapp2.0\TCCApi.RecomendacoesApi.csproj.CoreCompileInputs.cache
+C:\Users\rafae\source\repos\TCCApi.RecomendacoesApi\TCCApi.RecomendacoesApi\obj\Debug\netcoreapp2.0\TCCApi.RecomendacoesApi.AssemblyInfoInputs.cache
+C:\Users\rafae\source\repos\TCCApi.RecomendacoesApi\TCCApi.RecomendacoesApi\obj\Debug\netcoreapp2.0\TCCApi.RecomendacoesApi.AssemblyInfo.cs
+C:\Users\rafae\source\repos\TCCApi.RecomendacoesApi\TCCApi.RecomendacoesApi\bin\Debug\netcoreapp2.0\TCCApi.RecomendacoesApi.pdb
+C:\Users\rafae\source\repos\TCCApi.RecomendacoesApi\TCCApi.RecomendacoesApi\obj\Debug\netcoreapp2.0\TCCApi.RecomendacoesApi.dll
+C:\Users\rafae\source\repos\TCCApi.RecomendacoesApi\TCCApi.RecomendacoesApi\obj\Debug\netcoreapp2.0\TCCApi.RecomendacoesApi.pdb

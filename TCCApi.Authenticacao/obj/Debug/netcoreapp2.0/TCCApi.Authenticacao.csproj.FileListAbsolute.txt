@@ -1,0 +1,8 @@
+C:\Users\rafae\source\repos\TCCApi.RecomendacoesApi\TCCApi.Authenticacao\bin\Debug\netcoreapp2.0\TCCApi.Authenticacao.deps.json
+C:\Users\rafae\source\repos\TCCApi.RecomendacoesApi\TCCApi.Authenticacao\bin\Debug\netcoreapp2.0\TCCApi.Authenticacao.runtimeconfig.json
+C:\Users\rafae\source\repos\TCCApi.RecomendacoesApi\TCCApi.Authenticacao\bin\Debug\netcoreapp2.0\TCCApi.Authenticacao.runtimeconfig.dev.json
+C:\Users\rafae\source\repos\TCCApi.RecomendacoesApi\TCCApi.Authenticacao\bin\Debug\netcoreapp2.0\TCCApi.Authenticacao.dll
+C:\Users\rafae\source\repos\TCCApi.RecomendacoesApi\TCCApi.Authenticacao\obj\Debug\netcoreapp2.0\TCCApi.Authenticacao.csprojResolveAssemblyReference.cache
+C:\Users\rafae\source\repos\TCCApi.RecomendacoesApi\TCCApi.Authenticacao\obj\Debug\netcoreapp2.0\TCCApi.Authenticacao.csproj.CoreCompileInputs.cache
+C:\Users\rafae\source\repos\TCCApi.RecomendacoesApi\TCCApi.Authenticacao\obj\Debug\netcoreapp2.0\TCCApi.Authenticacao.AssemblyInfoInputs.cache
+C:\Users\rafae\source\repos\TCCApi.RecomendacoesApi\TCCApi.Authenticacao\obj\Debug\netcoreapp2.0\TCCApi.Authenticacao.AssemblyInfo.cs

@@ -6,3 +6,6 @@ C:\Users\rafae\source\repos\TCCApi.RecomendacoesApi\TCCApi.Authenticacao\obj\Deb
 C:\Users\rafae\source\repos\TCCApi.RecomendacoesApi\TCCApi.Authenticacao\obj\Debug\netcoreapp2.0\TCCApi.Authenticacao.csproj.CoreCompileInputs.cache
 C:\Users\rafae\source\repos\TCCApi.RecomendacoesApi\TCCApi.Authenticacao\obj\Debug\netcoreapp2.0\TCCApi.Authenticacao.AssemblyInfoInputs.cache
 C:\Users\rafae\source\repos\TCCApi.RecomendacoesApi\TCCApi.Authenticacao\obj\Debug\netcoreapp2.0\TCCApi.Authenticacao.AssemblyInfo.cs
+C:\Users\rafae\source\repos\TCCApi.RecomendacoesApi\TCCApi.Authenticacao\bin\Debug\netcoreapp2.0\TCCApi.Authenticacao.pdb
+C:\Users\rafae\source\repos\TCCApi.RecomendacoesApi\TCCApi.Authenticacao\obj\Debug\netcoreapp2.0\TCCApi.Authenticacao.dll
+C:\Users\rafae\source\repos\TCCApi.RecomendacoesApi\TCCApi.Authenticacao\obj\Debug\netcoreapp2.0\TCCApi.Authenticacao.pdb

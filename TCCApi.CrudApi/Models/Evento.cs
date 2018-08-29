@@ -19,6 +19,8 @@ namespace TCCApi.CrudApi.Models
         public string PublicoAlvo { get; set; }
         public IList<Localizacao> Locais { get; set; }
         public IList<FotoEvento> Fotos { get; set; }
+        public string DescricaoSimples { get; set; }
+        public double Valor { get; set; }
 
         public Empresa  Empresa { get; set; }
 

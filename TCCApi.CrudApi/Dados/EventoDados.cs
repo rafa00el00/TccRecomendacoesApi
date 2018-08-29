@@ -19,12 +19,22 @@ namespace TCCApi.CrudApi.Dados
 
     public class EventoDados : GenericDados<EventoDTO> , IEventoDados
     {
-        
+        private readonly DbContext _context;
+
         public EventoDados(DbContext context):base(context)
         {
+            this._context = context;
+        }
+
+        public override async Task<EventoDTO> GetAsync(int key)
+        {
+            var evento = _context.Set<EventoDTO>().Include(e => e.Tags).FirstOrDefault(e => e.Id == key);
+            return evento;
         }
 
     }
+
+   
 
    
 }

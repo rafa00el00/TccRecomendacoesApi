@@ -19,6 +19,8 @@ namespace TCCApi.CrudApi.Models.DTO
         
         public string Nome { get; set; }
         public string Descricao { get; set; }
+        public string DescricaoSimples { get; set; }
+        public double Valor { get; set; }
         public IList<EventoTagDTO> Tags { get; set; }
         public DateTime DataEvento { get; set; }
         public DateTime DataCriacao { get; set; }
@@ -92,7 +94,7 @@ namespace TCCApi.CrudApi.Models.DTO
 
     public class EmpresaDTO : DataBaseEntidade
     {
-        
+        [MaxLength(40)]
         public string Cnpj { get; set; }
         public string RazaoSocial { get; set; }
         public string NomeFantasia { get; set; }

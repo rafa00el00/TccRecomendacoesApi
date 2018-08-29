@@ -32,17 +32,17 @@ namespace TCCApi.CrudApi.Dados
             _context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
 
-        public Task<T> GetAsync(int key)
+        public virtual Task<T> GetAsync(int key)
         {
             return _context.FindAsync<T>(key);
         }
 
-        public IQueryable<T> GetAll()
+        public virtual IQueryable<T> GetAll()
         {
             return _context.Set<T>().AsQueryable();
         }
 
-        public Task<int> AddAsync(T entidade)
+        public virtual Task<int> AddAsync(T entidade)
         {
             _context.AddAsync<T>(entidade);
             _context.Entry<T>(entidade).State = EntityState.Added;
@@ -50,7 +50,7 @@ namespace TCCApi.CrudApi.Dados
             return _context.SaveChangesAsync();
         }
 
-        public Task<int> PutAsync(T entidade)
+        public virtual Task<int> PutAsync(T entidade)
         {
             _context.Update<T>(entidade);
             _context.Entry<T>(entidade).State = EntityState.Modified;
@@ -58,7 +58,7 @@ namespace TCCApi.CrudApi.Dados
             return _context.SaveChangesAsync();
         }
 
-        public Task<int> RemoveAsync(T entidade)
+        public virtual Task<int> RemoveAsync(T entidade)
         {
             //_context.Remove<T>(entidade);
             _context.Entry<T>(entidade).State = EntityState.Deleted;
@@ -66,28 +66,28 @@ namespace TCCApi.CrudApi.Dados
             return _context.SaveChangesAsync();
         }
 
-        public Task<EntityEntry<T>> AddTempAsync(T entidade)
+        public virtual Task<EntityEntry<T>> AddTempAsync(T entidade)
         {
             var ret = _context.AddAsync<T>(entidade);
             _context.Entry<T>(entidade).State = EntityState.Detached;
             return ret;
         }
 
-        public EntityEntry<T> PutTemp(T entidade)
+        public virtual EntityEntry<T> PutTemp(T entidade)
         {
             var ret = _context.Update<T>(entidade);
             _context.Entry<T>(entidade).State = EntityState.Detached;
             return ret;
         }
 
-        public EntityEntry<T> RemoveTemp(T entidade)
+        public virtual EntityEntry<T> RemoveTemp(T entidade)
         {
             var ret = _context.Remove<T>(entidade);
             _context.Entry<T>(entidade).State = EntityState.Detached;
             return ret;
         }
 
-        public Task<int> SaveAllChanges()
+        public virtual Task<int> SaveAllChanges()
         {
             return _context.SaveChangesAsync();
         }

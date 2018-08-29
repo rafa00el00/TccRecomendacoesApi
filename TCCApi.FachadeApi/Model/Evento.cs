@@ -11,6 +11,8 @@ namespace TCCApi.FachadeApi.Model
         public int Id { get; set; }
         public string Nome { get; set; }
         public string Descricao { get; set; }
+        public string DescricaoSimples { get; set; }
+        public double Valor { get; set; }
         public IList<string> Tags { get; set; }
         public DateTime DataEvento { get; set; }
         public DateTime DataCriacao { get; set; }

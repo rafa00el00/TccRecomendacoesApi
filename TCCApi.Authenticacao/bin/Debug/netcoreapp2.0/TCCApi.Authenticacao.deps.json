@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.0",
-    "signature": "70b3bde655f1381cc2c47ce764bce5ef018ebe33"
+    "signature": "f8701386816b7a2a43ee42f2884e72579b096a02"
   },
   "compilationOptions": {
     "defines": [
@@ -23,6 +23,7 @@
     ".NETCoreApp,Version=v2.0": {
       "TCCApi.Authenticacao/1.0.0": {
         "dependencies": {
+          "FirebaseAuthentication.net": "3.0.7",
           "Microsoft.AspNetCore.All": "2.0.3",
           "Microsoft.NETCore.App": "2.0.0"
         },
@@ -31,6 +32,18 @@
         },
         "compile": {
           "TCCApi.Authenticacao.dll": {}
+        }
+      },
+      "FirebaseAuthentication.net/3.0.7": {
+        "dependencies": {
+          "NETStandard.Library": "2.0.0",
+          "Newtonsoft.Json": "10.0.1"
+        },
+        "runtime": {
+          "lib/netstandard1.1/Firebase.Auth.dll": {}
+        },
+        "compile": {
+          "lib/netstandard1.1/Firebase.Auth.dll": {}
         }
       },
       "Libuv/1.10.0": {
@@ -3977,6 +3990,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "FirebaseAuthentication.net/3.0.7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-9eBbw+TTYd89ZWQNa+FlBueHKgxBTbDwfW/jkOie11/5pF66lq5FCXGTRjDtPIk3fO3DMwCDjCFppaCPGwRnxw==",
+      "path": "firebaseauthentication.net/3.0.7",
+      "hashPath": "firebaseauthentication.net.3.0.7.nupkg.sha512"
     },
     "Libuv/1.10.0": {
       "type": "package",

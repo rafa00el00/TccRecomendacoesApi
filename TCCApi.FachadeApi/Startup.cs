@@ -8,7 +8,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using TCCApi.FachadeApi.Middleware;
 using TCCApi.FachadeApi.Utils;
+using TCCApi.RecomendacoesApi.Utils;
 
 namespace TCCApi.FachadeApi
 {
@@ -24,10 +26,14 @@ namespace TCCApi.FachadeApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddMvc(opts =>
+            {
+                opts.Filters.Add<GetUsuarioMiddleware>();
+            });
 
             //Iniciando o IOC
             new IocFactory().Initialize(services);
+            new MapperFactory();
             services.AddSingleton<IConfiguration>(Configuration);
 
         }
@@ -41,6 +47,7 @@ namespace TCCApi.FachadeApi
             }
 
             app.UseMvc();
+
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using TCCApi.FachadeApi.Model;
 using TCCApi.FachadeApi.Negocio;
 using TCCApi.FachadeApi.ViewModel;
 
@@ -26,7 +27,7 @@ namespace TCCApi.FachadeApi.Controllers
         }
 
         [Route("{key}")]
-        public async Task<EventoDetalhesViewModel> GetAsync([FromRoute] int key)
+        public async Task<Evento> GetAsync([FromRoute] int key)
         {
             return  await _eventoNegocio.GetAsync(key);
         }

@@ -6,12 +6,11 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using TCCApi.FachadeApi.Model;
-using TCCApi.FachadeApi.Model.TO;
 
 namespace TCCApi.FachadeApi.Services
 {
 
-    
+
 
 
     public interface IEventoCrudService
@@ -19,6 +18,7 @@ namespace TCCApi.FachadeApi.Services
         Task<Evento> GetAsync(int key);
         Task<IList<Evento>> GetAllAsync();
     }
+
     public class EventoCrudService : IEventoCrudService
     {
         private readonly IConfiguration configuration;

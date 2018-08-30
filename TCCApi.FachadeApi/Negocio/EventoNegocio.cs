@@ -12,10 +12,9 @@ using TCCApi.FachadeApi.ViewModel;
 
 namespace TCCApi.FachadeApi.Negocio
 {
-
     public interface IEventoNegocio
     {
-        Task<EventoDetalhesViewModel> GetAsync(int key);
+        Task<Evento> GetAsync(int key);
         Task<EventosListaViewModel> GetAllAsync();
         Task<IList<ItemEvento>> GetEventosRecomendacoesAsync();
         Task<IList<ItemEvento>> GetEventosEmAltaAsync();
@@ -51,29 +50,17 @@ namespace TCCApi.FachadeApi.Negocio
 
         }
 
-        public async Task<EventoDetalhesViewModel> GetAsync(int key)
+        public async Task<Evento> GetAsync(int key)
         {
-            //var recomendacao = await _eventoRecomendacaoService.GetAsync(key);
-            //var similares = new List<Evento>();
-
-            //foreach (var sim in recomendacao.Similares)
-            //{
-
-            //    try
-            //    {
-            //        similares.Add(await _eventoCrudService.GetAsync(int.Parse(sim)));
-            //    }
-            //    catch (Exception)
-            //    {
-                    
-            //    }
-            //}
-            return new EventoDetalhesViewModel
+            var retorno = await _eventoCrudService.GetAsync((key));
+            await _usuarioRecomendacaoService.AddMovimentacaoAsync(new MovimentacaoVisita
             {
-                Evento = await _eventoCrudService.GetAsync((key)),
-                //Similares = similares
-
-            };
+                usuario = SharedInfo.CodUsuario,
+                evento = key.ToString(),
+                status = "1"
+            });
+            return retorno;
+               
         }
 
         public async Task<IList<ItemEvento>> GetEventosEmAltaAsync()

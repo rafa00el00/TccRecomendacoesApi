@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
-using PayPal.Api;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace TCCApi.VendaApi.Services
 {
@@ -35,8 +35,8 @@ namespace TCCApi.VendaApi.Services
             }));
 
             var response = client.SendAsync(request);
-            
 
+            throw new NotImplementedException();
         }
 
         public class Session
@@ -45,20 +45,5 @@ namespace TCCApi.VendaApi.Services
         }
 
        
-    }
-
-    public class TransactionService
-    {
-        private readonly IConfiguration _configuration;
-
-        public string BaseUrl { get; }
-
-        public AuthService(IConfiguration configuration)
-        {
-            _configuration = configuration;
-
-            BaseUrl = configuration.GetSection("pagseguro:api").Get<string>() + "/transactions";
-
-        }
     }
 }

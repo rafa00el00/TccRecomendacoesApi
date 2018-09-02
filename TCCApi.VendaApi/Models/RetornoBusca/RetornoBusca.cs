@@ -64,4 +64,4 @@ namespace TCCApi.VendaApi.Models.RetornoBusca
         public Transactions Transactions { get; set; }
     }
 }
-}
+

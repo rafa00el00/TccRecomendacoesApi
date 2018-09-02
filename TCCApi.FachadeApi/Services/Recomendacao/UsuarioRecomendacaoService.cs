@@ -29,15 +29,15 @@ namespace TCCApi.FachadeApi.Services.Recomendacao
 
         public async Task AddMovimentacaoAsync(MovimentacaoVisita movimentacaoVisita)
         {
-            
-                var http = new HttpClient();
+
+            var http = new HttpClient();
             var content = new StringContent(JsonConvert.SerializeObject(movimentacaoVisita));
 
             var response = await http.PostAsync(BaseUrl + "/AddMovimentacao", content);
 
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
-               
+
             }
             else
             {
@@ -63,6 +63,6 @@ namespace TCCApi.FachadeApi.Services.Recomendacao
 
         }
 
-        
+
     }
-    }
+}

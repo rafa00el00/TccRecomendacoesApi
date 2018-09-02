@@ -8,5 +8,6 @@ namespace TCCApi.FachadeApi.Utils
     public static class SharedInfo
     {
         public static string CodUsuario;
+        public static int CodEmpresa;
     }
 }

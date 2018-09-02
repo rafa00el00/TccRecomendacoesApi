@@ -17,6 +17,7 @@ namespace TCCApi.FachadeApi.Middleware
         public void OnActionExecuting(ActionExecutingContext context)
         {
             SharedInfo.CodUsuario = "usuario1";
+            SharedInfo.CodEmpresa = 1;
         }
     }
 }

@@ -17,7 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TCCApi.EmpresaCRUD", "TCCAp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TCCApi.VisitaApi", "TCCApi.VisitaApi\TCCApi.VisitaApi.csproj", "{3D3EF6AE-EFD1-44B1-B0BD-A2E59600B8D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TCCApi.VendaApi", "TCCApi.VendaApi\TCCApi.VendaApi.csproj", "{C8085E62-B1A0-4778-9139-7BEEAC19861E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TCCApi.VendaApi", "TCCApi.VendaApi\TCCApi.VendaApi.csproj", "{C8085E62-B1A0-4778-9139-7BEEAC19861E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TCCApi.EventoApi", "TCCApi.EventoApi\TCCApi.EventoApi.csproj", "{68892CE4-C2F9-4B41-BC17-F2A565EF65F5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{C8085E62-B1A0-4778-9139-7BEEAC19861E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C8085E62-B1A0-4778-9139-7BEEAC19861E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C8085E62-B1A0-4778-9139-7BEEAC19861E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68892CE4-C2F9-4B41-BC17-F2A565EF65F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68892CE4-C2F9-4B41-BC17-F2A565EF65F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68892CE4-C2F9-4B41-BC17-F2A565EF65F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68892CE4-C2F9-4B41-BC17-F2A565EF65F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

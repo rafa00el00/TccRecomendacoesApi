@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace TCCApi.FachadeApi.Model
+namespace TCCApi.EventoApi.Models
 {
     public class Evento
     {
+
         public int Id { get; set; }
         public string Nome { get; set; }
         public string DescricaoSimples { get; set; }
@@ -31,5 +32,9 @@ namespace TCCApi.FachadeApi.Model
         public string Cidade { get; set; }
         public string UF { get; set; }
 
+
     }
+
+
+
 }

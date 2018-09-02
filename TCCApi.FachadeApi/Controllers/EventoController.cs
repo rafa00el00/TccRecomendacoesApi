@@ -73,5 +73,13 @@ namespace TCCApi.FachadeApi.Controllers
             return Ok(eventos);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> PostEventoAsync([FromBody]Evento evento)
+        {
+            if (evento == default(Evento))
+                return BadRequest(new { message = "Não foi possivel cadastrar evento" });
+
+            return Created("",await _eventoNegocio.PostAsync(evento));
+        }
     }
 }

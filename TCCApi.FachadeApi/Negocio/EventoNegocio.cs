@@ -20,6 +20,10 @@ namespace TCCApi.FachadeApi.Negocio
         Task<IList<ItemEvento>> GetEventosEmAltaAsync();
         Task<IList<ItemEvento>> GetEventosUltimosVisitadosAsync();
         Task<IList<ItemEvento>> GetRecomendacoesPorEventoAsync(string keyEvento);
+
+        Task<IList<Evento>> GetPorEmpresaAsync(int key);
+        Task<Evento> PostAsync(Evento evento);
+        Task<Evento> PutAsync(Evento evento);
     }
 
     public class EventoNegocio : IEventoNegocio
@@ -28,18 +32,23 @@ namespace TCCApi.FachadeApi.Negocio
         private readonly IEventoRecomendacaoService _eventoRecomendacaoService;
         private readonly IUsuarioRecomendacaoService _usuarioRecomendacaoService;
         private readonly IVisitaService _visitaService;
+        private readonly IEventoRecomendacaoPyService _eventoRecomendacaoPy;
 
         public EventoNegocio(IEventoCrudService eventoCrudService,
             IEventoRecomendacaoService eventoRecomendacaoService,
             IUsuarioRecomendacaoService usuarioRecomendacaoService,
-            IVisitaService visitaService)
+            IVisitaService visitaService,
+            IEventoRecomendacaoPyService eventoRecomendacaoPy)
         {
             this._eventoCrudService = eventoCrudService;
             this._eventoRecomendacaoService = eventoRecomendacaoService;
             this._usuarioRecomendacaoService = usuarioRecomendacaoService;
             this._visitaService = visitaService;
+            this._eventoRecomendacaoPy = eventoRecomendacaoPy;
         }
 
+       
+        
 
         public async Task<EventosListaViewModel> GetAllAsync()
         {
@@ -113,6 +122,11 @@ namespace TCCApi.FachadeApi.Negocio
             return listaEventos;
         }
 
+        public async Task<IList<Evento>> GetPorEmpresaAsync(int key)
+        {
+            return await _eventoCrudService.GetPorEmpresaAsync(key);
+        }
+
         public async Task<IList<ItemEvento>> GetRecomendacoesPorEventoAsync(string keyEvento)
         {
             var recomendacao = await _eventoRecomendacaoService.GetAsync(int.Parse(keyEvento));
@@ -137,7 +151,18 @@ namespace TCCApi.FachadeApi.Negocio
             return similares;
         }
 
+        public async Task<Evento> PostAsync(Evento evento)
+        {
+            evento.IdEmpresa = SharedInfo.CodEmpresa;
+            var eventoRet = await _eventoCrudService.PostAsync(evento);
+            await _eventoRecomendacaoPy.PostAsync(eventoRet);
+            return eventoRet;
+        }
 
+        public async Task<Evento> PutAsync(Evento evento)
+        {
+            return await _eventoCrudService.PutAsync(evento);
+        }
     }
 
 

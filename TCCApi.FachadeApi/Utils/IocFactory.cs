@@ -29,6 +29,8 @@ namespace TCCApi.FachadeApi.Utils
             services.AddScoped<IUsuarioRecomendacaoService, UsuarioRecomendacaoService>();
             services.AddScoped<IVisitaService, VisitaService>();
             services.AddScoped<IEmpresaService, EmpresaService>();
+            services.AddScoped<IEventoRecomendacaoPyService, EventoRecomendacaoPyService>();
+            
         }
 
     }

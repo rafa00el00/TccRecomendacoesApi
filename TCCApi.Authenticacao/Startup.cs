@@ -8,6 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using TCCApi.Authenticacao.Util.MappersProfile;
+using TCCApi.Authenticacao.Utils;
 
 namespace TCCApi.Authenticacao
 {
@@ -24,7 +26,15 @@ namespace TCCApi.Authenticacao
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            new IocFactory().Initialize(services);
+
+            AutoMapper.Mapper.Initialize(cfg =>
+            {
+                cfg.AddProfile<DatabaseProfile>();
+                cfg.CreateMissingTypeMaps = true;
+            });
         }
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

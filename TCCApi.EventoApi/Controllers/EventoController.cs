@@ -8,7 +8,7 @@ namespace TCCApi.EventoApi.Controllers
 
     [Produces("application/json")]
     [Route("api/Evento")]
-    public class EventoController : GenericController<Evento, EventoDTO>
+    public class EventoController : GenericController<Usuario, EventoDTO>
     {
         public EventoController(IEventoNegocio eventoNegocio) : base(eventoNegocio)
         {

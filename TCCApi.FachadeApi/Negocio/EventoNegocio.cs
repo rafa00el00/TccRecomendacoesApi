@@ -24,6 +24,7 @@ namespace TCCApi.FachadeApi.Negocio
         Task<IList<Evento>> GetPorEmpresaAsync(int key);
         Task<Evento> PostAsync(Evento evento);
         Task<Evento> PutAsync(Evento evento);
+        Task<EventosListaViewModel> GetAllPageAsync(int pageNum, int qtd);
     }
 
     public class EventoNegocio : IEventoNegocio
@@ -55,6 +56,14 @@ namespace TCCApi.FachadeApi.Negocio
             return new EventosListaViewModel
             {
                 Eventos = await _eventoCrudService.GetAllAsync()
+            };
+
+        }
+        public async Task<EventosListaViewModel> GetAllPageAsync(int page,int qtd)
+        {
+            return new EventosListaViewModel
+            {
+                Eventos = await _eventoCrudService.GetAllPageAsync(page,qtd)
             };
 
         }

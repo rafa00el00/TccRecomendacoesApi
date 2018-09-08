@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.0",
-    "signature": "03ce2e0bfa126efd780f07f1c0d4b5a812f2e6f1"
+    "signature": "2f0d3f13e8a7e0e3ba3fe5efd6d49a09402207dd"
   },
   "compilationOptions": {
     "defines": [
@@ -27,7 +27,8 @@
           "FirebaseAuthentication.net": "3.0.7",
           "Microsoft.AspNetCore.All": "2.0.3",
           "Microsoft.NETCore.App": "2.0.0",
-          "MySql.Data.EntityFrameworkCore": "8.0.12"
+          "MySql.Data.EntityFrameworkCore": "8.0.12",
+          "MySql.Data.EntityFrameworkCore.Design": "8.0.12"
         },
         "runtime": {
           "TCCApi.Authenticacao.dll": {}
@@ -1661,6 +1662,18 @@
           "lib/netstandard2.0/Microsoft.EntityFrameworkCore.Relational.dll": {}
         }
       },
+      "Microsoft.EntityFrameworkCore.Relational.Design/1.1.5": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Relational": "2.0.3",
+          "NETStandard.Library": "2.0.0"
+        },
+        "runtime": {
+          "lib/netstandard1.3/Microsoft.EntityFrameworkCore.Relational.Design.dll": {}
+        },
+        "compile": {
+          "lib/netstandard1.3/Microsoft.EntityFrameworkCore.Relational.Design.dll": {}
+        }
+      },
       "Microsoft.EntityFrameworkCore.Sqlite/2.0.1": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Sqlite.Core": "2.0.1",
@@ -2378,6 +2391,20 @@
         },
         "compile": {
           "lib/netstandard2.0/MySql.Data.EntityFrameworkCore.dll": {}
+        }
+      },
+      "MySql.Data.EntityFrameworkCore.Design/8.0.12": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Relational.Design": "1.1.5",
+          "MySql.Data": "8.0.12",
+          "MySql.Data.EntityFrameworkCore": "8.0.12",
+          "NETStandard.Library": "2.0.0"
+        },
+        "runtime": {
+          "lib/netstandard1.6/MySql.Data.EntityFrameworkCore.Design.dll": {}
+        },
+        "compile": {
+          "lib/netstandard1.6/MySql.Data.EntityFrameworkCore.Design.dll": {}
         }
       },
       "Newtonsoft.Json/10.0.1": {
@@ -4819,6 +4846,13 @@
       "path": "microsoft.entityframeworkcore.relational/2.0.3",
       "hashPath": "microsoft.entityframeworkcore.relational.2.0.3.nupkg.sha512"
     },
+    "Microsoft.EntityFrameworkCore.Relational.Design/1.1.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-WqPO8M9Ho0CiJ1tnIgWgXoAPt8/oIE8lcELZYbvmiVyr59f395HmHQhGCXti0/DePgPb7N6EHTIgCczRyuqIkg==",
+      "path": "microsoft.entityframeworkcore.relational.design/1.1.5",
+      "hashPath": "microsoft.entityframeworkcore.relational.design.1.1.5.nupkg.sha512"
+    },
     "Microsoft.EntityFrameworkCore.Sqlite/2.0.1": {
       "type": "package",
       "serviceable": true,
@@ -5245,6 +5279,13 @@
       "sha512": "sha512-EE/fPV+tmBW/GCb/Mmm9a+90AlBCKo3IQiw5DecWs84yWOBIeADO9vV71pEzglr25TxE3/99td+Gd+UpoLwL5g==",
       "path": "mysql.data.entityframeworkcore/8.0.12",
       "hashPath": "mysql.data.entityframeworkcore.8.0.12.nupkg.sha512"
+    },
+    "MySql.Data.EntityFrameworkCore.Design/8.0.12": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-XvxAieDrDNC8l7Wcskm519nI8b0wE2kHDrgNbutI0/PJwqTl+AzXpgs2DWyZn/I901uOa641dLBZ8lDu3CFTiw==",
+      "path": "mysql.data.entityframeworkcore.design/8.0.12",
+      "hashPath": "mysql.data.entityframeworkcore.design.8.0.12.nupkg.sha512"
     },
     "Newtonsoft.Json/10.0.1": {
       "type": "package",

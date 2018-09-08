@@ -20,6 +20,7 @@ namespace TCCApi.FachadeApi.Services
         Task<IList<Evento>> GetPorEmpresaAsync(int key);
         Task<Evento> PostAsync(Evento evento);
         Task<Evento> PutAsync(Evento evento);
+        Task<IList<Evento>> GetAllPageAsync(int page, int qtd);
     }
 
     public class EventoCrudService : IEventoCrudService
@@ -43,6 +44,21 @@ namespace TCCApi.FachadeApi.Services
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 return JsonConvert.DeserializeObject<IList< Evento >>(await response.Content.ReadAsStringAsync());
+            }
+            else
+            {
+                throw new Exception("Falha ao buscar o Evento ");
+            }
+        }
+
+        public async Task<IList<Evento>> GetAllPageAsync(int page,int qtd)
+        {
+            var http = new HttpClient();
+            var response = await http.GetAsync(BaseUrl + $"/evento/Page/{page}/{qtd}");
+
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                return JsonConvert.DeserializeObject<IList<Evento>>(await response.Content.ReadAsStringAsync());
             }
             else
             {

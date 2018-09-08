@@ -32,6 +32,12 @@ namespace TCCApi.EventoApi.Controllers
             return Ok(Negocio.GetAll());
         }
 
+        [Route("Page/{page}/{qtd}")]
+        public IActionResult GetAllPage(int page, int qtd)
+        {
+            return Ok(Negocio.GetAll(page, qtd));
+        }
+
         [HttpPost]
         public async Task<IActionResult> PostAsync( [FromBody]T dado)
         {

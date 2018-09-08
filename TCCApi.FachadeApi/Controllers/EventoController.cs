@@ -26,6 +26,12 @@ namespace TCCApi.FachadeApi.Controllers
             return await _eventoNegocio.GetAllAsync();
         }
 
+        [Route("Page/{PageNum}/{qtd}")]
+        public async Task<EventosListaViewModel> GetAllPageAsync([FromRoute]int PageNum,[FromRoute]int qtd)
+        {
+            return await _eventoNegocio.GetAllPageAsync(PageNum,qtd);
+        }
+
         [Route("{key}")]
         public async Task<Evento> GetAsync([FromRoute] int key)
         {

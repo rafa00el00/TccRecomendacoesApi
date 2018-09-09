@@ -1,10 +1,13 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TCCApi.FachadeApi.Model.TO;
+using TCCApi.FachadeApi.Models;
 using TCCApi.FachadeApi.Negocio;
 
 namespace TCCApi.FachadeApi.Controllers
 {
+
+
     [Produces("application/json")]
     [Route("api/Empresa")]
     public class EmpresaController : Controller

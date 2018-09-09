@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using IdentityServer4.AccessTokenValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -36,6 +37,15 @@ namespace TCCApi.FachadeApi
             new MapperFactory();
             services.AddSingleton<IConfiguration>(Configuration);
 
+            var authUrl = Configuration.GetSection("apisUrls:AUTHAPI:url").Get<string>();
+            services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
+            .AddIdentityServerAuthentication(options =>
+            {
+                 options.Authority = authUrl;
+                 options.ApiName = "api1";
+             });
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,6 +57,9 @@ namespace TCCApi.FachadeApi
             }
 
             app.UseMvc();
+
+            
+
 
         }
     }

@@ -1,9 +1,11 @@
 ﻿using System.Threading.Tasks;
 using TCCApi.FachadeApi.Model.TO;
+using TCCApi.FachadeApi.Models;
 using TCCApi.FachadeApi.Services;
 
 namespace TCCApi.FachadeApi.Negocio
 {
+
     public class EmpresaNegocio : IEmpresaNegocio
     {
         private readonly IEmpresaService _empresaService;
@@ -23,6 +25,7 @@ namespace TCCApi.FachadeApi.Negocio
             await _empresaService.PostEmpresa(empresa);
         }
 
+       
     }
 
 

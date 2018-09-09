@@ -19,6 +19,7 @@ namespace TCCApi.Authenticacao.Utils
             services.AddDbContext<MyDbContext>();
             services.AddScoped<DbContext, MyDbContext>();
             services.AddScoped<IUsuarioDados, UsuarioDados>();
+            services.AddScoped<IApplicationUserDados, ApplicationUserDados>();
             
         }
 

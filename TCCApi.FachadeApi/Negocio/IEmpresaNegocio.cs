@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using TCCApi.FachadeApi.Model.TO;
+using TCCApi.FachadeApi.Models;
 
 namespace TCCApi.FachadeApi.Negocio
 {

@@ -18,7 +18,8 @@ namespace TCCApi.FachadeApi.Utils
         {
             services.AddScoped<IEventoNegocio, EventoNegocio>();
             services.AddScoped<IEmpresaNegocio, EmpresaNegocio>();
-            
+            services.AddScoped<IAuthNegocio, AuthNegocio>();
+
         }
 
         private void InitializeServices(IServiceCollection services)
@@ -30,7 +31,10 @@ namespace TCCApi.FachadeApi.Utils
             services.AddScoped<IVisitaService, VisitaService>();
             services.AddScoped<IEmpresaService, EmpresaService>();
             services.AddScoped<IEventoRecomendacaoPyService, EventoRecomendacaoPyService>();
+            services.AddScoped<IAuthService, AuthService>();
             
+
+
         }
 
     }

@@ -8,6 +8,7 @@ using TCCApi.FachadeApi.Model.TO;
 
 namespace TCCApi.FachadeApi.Services
 {
+
     public class CompraService : ICompraService
     {
         private readonly IConfiguration configuration;

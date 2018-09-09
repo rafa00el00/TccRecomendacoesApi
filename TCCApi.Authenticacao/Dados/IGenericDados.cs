@@ -28,8 +28,8 @@ namespace TCCApi.Authenticacao.Dados
 
         public GenericDados(DbContext context)
         {
-            _context = context;
-            _context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+            //_context = context;
+            //_context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
 
         public virtual Task<T> GetAsync(int key)

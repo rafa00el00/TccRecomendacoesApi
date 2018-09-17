@@ -8,6 +8,8 @@ namespace TCCApi.FachadeApi.Model.TO
         public string DescricaoSimples { get; set; }
         public string Img { get; set; }
         public DateTime DataEvento { get; set; }
-        public string Status { get; set; }
+        public int Status { get; set; }
+        public string DescricaoStatus { get; set; }
+        public string CodEvento { get; set; }
     }
 }

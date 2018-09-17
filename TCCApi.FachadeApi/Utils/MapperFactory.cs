@@ -12,7 +12,8 @@ namespace TCCApi.RecomendacoesApi.Utils
             Mapper.Initialize(config =>
             {
                 config.CreateMap<Evento, ItemEvento>()
-                .ForMember(d => d.Titulo, s => s.MapFrom(src => src.Nome));
+                .ForMember(d => d.Titulo, s => s.MapFrom(src => src.Nome))
+                .ForMember(d => d.Local, s => s.MapFrom(scr => $"{scr.Logradouro},{scr.Numero} - {scr.Bairro} - {scr.Cidade}"));
                 config.CreateMap<Usuario, ApplicationUserTO>()
                     .ConstructUsing(d => new ApplicationUserTO() {
                         Email = d.Email,
@@ -28,6 +29,10 @@ namespace TCCApi.RecomendacoesApi.Utils
                         Password = d.Password,
                         Claims = ApplicationUserTO.CreateClaimsFrom<Empresa>(d)
                     });
+
+                config.CreateMap<Compra, ItemCompra>()
+                .ForMember(d => d.Titulo, s => s.MapFrom(c => c.Descricao))
+                .ForMember(d => d.CodEvento, s=> s.MapFrom(c=>c.ItemID));
                 config.CreateMissingTypeMaps = true;
             });
         }

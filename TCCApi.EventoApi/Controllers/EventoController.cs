@@ -10,10 +10,19 @@ namespace TCCApi.EventoApi.Controllers
     [Route("api/Evento")]
     public class EventoController : GenericController<Evento, EventoDTO>
     {
+        private readonly IEventoNegocio _eventoNegocio;
+
         public EventoController(IEventoNegocio eventoNegocio) : base(eventoNegocio)
         {
-
+            this._eventoNegocio = eventoNegocio;
         }
+
+        [Route("Tags")]
+        public IActionResult GetAllTags()
+        {
+            return Ok(_eventoNegocio.GetAllTags());
+        }
+
 
         
     }

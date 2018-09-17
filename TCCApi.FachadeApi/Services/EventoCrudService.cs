@@ -21,6 +21,7 @@ namespace TCCApi.FachadeApi.Services
         Task<Evento> PostAsync(Evento evento);
         Task<Evento> PutAsync(Evento evento);
         Task<IList<Evento>> GetAllPageAsync(int page, int qtd);
+        Task<IList<string>> GetAllTagsAsync();
     }
 
     public class EventoCrudService : IEventoCrudService
@@ -130,6 +131,22 @@ namespace TCCApi.FachadeApi.Services
             {
                 throw new Exception("Falha ao buscar o Evento ");
             }
+        }
+
+        public async Task<IList<string>> GetAllTagsAsync()
+        {
+            var http = new HttpClient();
+            var response = await http.GetAsync(BaseUrl + "/Evento/Tags");
+
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                return JsonConvert.DeserializeObject<IList<string>>(await response.Content.ReadAsStringAsync());
+            }
+            else
+            {
+                throw new Exception("Falha ao buscar as Tags dos eventos");
+            }
+
         }
     }
 }

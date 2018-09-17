@@ -15,6 +15,7 @@ namespace TCCApi.FachadeApi.Services
         Task<IList<int>> GetTopMostAsync();
         Task<IList<VisitaTO>> GetUltimasVisitasAsync(string guidUsuario);
         Task PostVisita(VisitaTO visita);
+        
     }
 
     public class VisitaService : IVisitaService
@@ -81,5 +82,6 @@ namespace TCCApi.FachadeApi.Services
             }
         }
 
+       
     }
 }

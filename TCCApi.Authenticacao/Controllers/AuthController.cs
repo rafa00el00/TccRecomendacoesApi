@@ -29,7 +29,7 @@ namespace TCCApi.Authenticacao.Controllers
                 UserName = applicationUser.UserName,
                 Claims = applicationUser.Claims
             };
-            usuario.Claims.Add(new MyClaim("guidUsuario", Guid.NewGuid().ToString()));
+            usuario.Claims.Add(new MyClaim("guidusuario", Guid.NewGuid().ToString()));
             usuario.Claims.Add(new MyClaim("tipo", "usuario"));
             try
             {

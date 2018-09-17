@@ -7,6 +7,7 @@ using TCCApi.VendaApi.Services;
 
 namespace TCCApi.VendaApi.Controllers
 {
+
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {

@@ -21,15 +21,16 @@ namespace TCCApi.FachadeApi.Controllers
             this._eventoNegocio = eventoNegocio;
         }
 
-        public async Task<EventosListaViewModel> GetAllAsync()
+        [HttpGet]
+        public async Task<IActionResult> GetAllAsync()
         {
-            return await _eventoNegocio.GetAllAsync();
+            return Ok(await _eventoNegocio.GetAllAsync());
         }
 
         [Route("Page/{PageNum}/{qtd}")]
-        public async Task<EventosListaViewModel> GetAllPageAsync([FromRoute]int PageNum,[FromRoute]int qtd)
+        public async Task<ActionResult> GetAllPageAsync([FromRoute]int PageNum,[FromRoute]int qtd)
         {
-            return await _eventoNegocio.GetAllPageAsync(PageNum,qtd);
+            return Ok(await _eventoNegocio.GetAllPageAsync(PageNum,qtd));
         }
 
         [Route("{key}")]
@@ -86,6 +87,12 @@ namespace TCCApi.FachadeApi.Controllers
                 return BadRequest(new { message = "Não foi possivel cadastrar evento" });
 
             return Created("",await _eventoNegocio.PostAsync(evento));
+        }
+
+        [Route("Tags")]
+        public async Task<IActionResult> GetAllTagsAsync()
+        {
+            return Ok(await _eventoNegocio.GetAllTagsAsync());
         }
     }
 }

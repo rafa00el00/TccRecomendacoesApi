@@ -9,7 +9,7 @@ namespace TCCApi.FachadeApi.Services
         string BaseUrl { get; }
 
         Task<Compra> GetAsync(int key);
-        Task<IList<ItemCompra>> GetListaCompras(string guidUsuario);
+        Task<IList<Compra>> GetListaCompras(string guidUsuario);
         Task<Compra> PostCompra(Compra compra);
     }
 }

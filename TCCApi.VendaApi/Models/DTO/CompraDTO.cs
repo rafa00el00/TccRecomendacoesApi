@@ -21,9 +21,14 @@ namespace TCCApi.VendaApi.Models.DTO
         public string Descricao { get; set; }
         public double Valor { get; set; }
         public int Qtd { get; set; }
+        public DateTime DataEvento { get; set; }
         public DateTime DataCompra { get; set; }
-        public string Status { get; set; }
-        public string ModoPagamento { get; set; }
+        public string GuidCompra { get; set; }
+
+
+        //Status
+        public int CodStatus { get; set; }
+        public string DescricaoStatus { get; set; }
 
         //Comprador
         public string GuidUsuario { get; set; }
@@ -32,10 +37,22 @@ namespace TCCApi.VendaApi.Models.DTO
         public string Ddd { get; set; }
         public string Celular { get; set; }
         public string EmailComprador { get; set; }
-        public string HashComprador { get; set; }
 
         //Vendedor
         public string GuidEmpresa { get; set; }
         public string NomeEmpresa { get; set; }
+
+        //Pagamento
+        public PagamentoDto Pagamento { get; set; }
+        public string ModoPagamento { get; internal set; }
+    }
+
+    public class PagamentoDto: DataBaseEntidade
+    {
+        public string Cartao { get; set; }
+        public string NomeTitular { get; set; }
+        public string Vencimento { get; set; }
+        public string Cvv { get; set; }
+
     }
 }

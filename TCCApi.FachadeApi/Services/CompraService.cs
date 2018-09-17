@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using TCCApi.FachadeApi.Model.TO;
 
@@ -42,11 +43,11 @@ namespace TCCApi.FachadeApi.Services
         public async Task<Compra> PostCompra(Compra compra)
         {
             var http = new HttpClient();
-            var content = new StringContent(JsonConvert.SerializeObject(compra));
+            var content = new StringContent(JsonConvert.SerializeObject(compra),Encoding.Default,"application/json");
 
             var response = await http.PostAsync(BaseUrl + "/Compra", content);
 
-            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            if (response.IsSuccessStatusCode)
             {
                 return JsonConvert.DeserializeObject<Compra>(await response.Content.ReadAsStringAsync());
             }
@@ -56,14 +57,14 @@ namespace TCCApi.FachadeApi.Services
             }
         }
 
-        public async Task<IList<ItemCompra>> GetListaCompras(string guidUsuario)
+        public async Task<IList<Compra>> GetListaCompras(string guidUsuario)
         {
             var http = new HttpClient();
             var response = await http.GetAsync(BaseUrl + "/Compra/Usuario/" + guidUsuario);
 
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                return JsonConvert.DeserializeObject<IList<ItemCompra>>(await response.Content.ReadAsStringAsync());
+                return JsonConvert.DeserializeObject<IList<Compra>>(await response.Content.ReadAsStringAsync());
             }
             else
             {

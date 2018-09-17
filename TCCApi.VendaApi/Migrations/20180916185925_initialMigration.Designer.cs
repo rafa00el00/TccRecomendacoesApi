@@ -10,9 +10,10 @@ using TCCApi.VendaApi.Dados;
 namespace TCCApi.VendaApi.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    partial class MyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180916185925_initialMigration")]
+    partial class initialMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,8 +49,6 @@ namespace TCCApi.VendaApi.Migrations
                     b.Property<string>("GuidUsuario");
 
                     b.Property<string>("ItemID");
-
-                    b.Property<string>("ModoPagamento");
 
                     b.Property<string>("NomeComprador");
 

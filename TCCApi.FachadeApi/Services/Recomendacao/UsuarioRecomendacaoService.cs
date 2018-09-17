@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using TCCApi.FachadeApi.Model.TO;
 
@@ -31,7 +32,7 @@ namespace TCCApi.FachadeApi.Services.Recomendacao
         {
 
             var http = new HttpClient();
-            var content = new StringContent(JsonConvert.SerializeObject(movimentacaoVisita));
+            var content = new StringContent(JsonConvert.SerializeObject(movimentacaoVisita),Encoding.Default,"application/json");
 
             var response = await http.PostAsync(BaseUrl + "/AddMovimentacao", content);
 
@@ -51,7 +52,7 @@ namespace TCCApi.FachadeApi.Services.Recomendacao
 
             var response = await http.GetAsync(BaseUrl + "/Similares/" + key);
 
-            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            if (response.IsSuccessStatusCode)
             {
                 return JsonConvert.DeserializeObject<IList<string>>(await response.Content.ReadAsStringAsync());
             }

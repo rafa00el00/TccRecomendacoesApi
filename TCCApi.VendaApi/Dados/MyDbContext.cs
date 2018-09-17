@@ -5,7 +5,7 @@ namespace TCCApi.VendaApi.Dados
 {
     public class MyDbContext : DbContext
     {
-        public DbSet<CompraDTO> Eventos { get; set; }
+        public DbSet<CompraDTO> Compras { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

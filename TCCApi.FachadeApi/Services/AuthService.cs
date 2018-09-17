@@ -14,11 +14,13 @@ namespace TCCApi.FachadeApi.Services
     public class AuthService : IAuthService
     {
         private readonly IConfiguration configuration;
+        private readonly SharedInfo sharedInfo;
         private readonly string baseUrl;
 
-        public AuthService(IConfiguration configuration)
+        public AuthService(IConfiguration configuration,SharedInfo sharedInfo)
         {
             this.configuration = configuration;
+            this.sharedInfo = sharedInfo;
             baseUrl = configuration.GetSection("apisUrls:AUTHAPI:url").Get<string>();
         }
         public string BaseUrl { get => baseUrl; }
@@ -26,7 +28,7 @@ namespace TCCApi.FachadeApi.Services
         public async Task<Usuario> GetUsuarioLogadoAsync()
         {
             var http = new HttpClient();
-            http.DefaultRequestHeaders.Add("Authorization", $"{SharedInfo.Token}");
+            http.DefaultRequestHeaders.Add("Authorization", $"{sharedInfo.Token}");
             var response = await http.GetAsync(BaseUrl + "/connect/userinfo");
 
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -45,7 +47,7 @@ namespace TCCApi.FachadeApi.Services
         public async Task<Empresa> GetEmpresaLogadoAsync()
         {
             var http = new HttpClient();
-            http.DefaultRequestHeaders.Add("Authorization", $"{SharedInfo.Token}");
+            http.DefaultRequestHeaders.Add("Authorization", $"{sharedInfo.Token}");
             var response = await http.GetAsync(BaseUrl + "/connect/userinfo");
 
             if (response.StatusCode == System.Net.HttpStatusCode.OK)

@@ -15,7 +15,7 @@ namespace TCCApi.FachadeApi.Negocio
     public interface IEventoNegocio
     {
         Task<Evento> GetAsync(int key);
-        Task<EventosListaViewModel> GetAllAsync();
+        Task<IList<ItemEvento>> GetAllAsync();
         Task<IList<ItemEvento>> GetEventosRecomendacoesAsync();
         Task<IList<ItemEvento>> GetEventosEmAltaAsync();
         Task<IList<ItemEvento>> GetEventosUltimosVisitadosAsync();
@@ -24,7 +24,9 @@ namespace TCCApi.FachadeApi.Negocio
         Task<IList<Evento>> GetPorEmpresaAsync(int key);
         Task<Evento> PostAsync(Evento evento);
         Task<Evento> PutAsync(Evento evento);
-        Task<EventosListaViewModel> GetAllPageAsync(int pageNum, int qtd);
+        Task<IList<ItemEvento>> GetAllPageAsync(int pageNum, int qtd);
+
+        Task<IList<string>> GetAllTagsAsync();
     }
 
     public class EventoNegocio : IEventoNegocio
@@ -34,49 +36,64 @@ namespace TCCApi.FachadeApi.Negocio
         private readonly IUsuarioRecomendacaoService _usuarioRecomendacaoService;
         private readonly IVisitaService _visitaService;
         private readonly IEventoRecomendacaoPyService _eventoRecomendacaoPy;
+        private readonly SharedInfo sharedInfo;
 
         public EventoNegocio(IEventoCrudService eventoCrudService,
             IEventoRecomendacaoService eventoRecomendacaoService,
             IUsuarioRecomendacaoService usuarioRecomendacaoService,
             IVisitaService visitaService,
-            IEventoRecomendacaoPyService eventoRecomendacaoPy)
+            IEventoRecomendacaoPyService eventoRecomendacaoPy,
+            SharedInfo sharedInfo)
         {
             this._eventoCrudService = eventoCrudService;
             this._eventoRecomendacaoService = eventoRecomendacaoService;
             this._usuarioRecomendacaoService = usuarioRecomendacaoService;
             this._visitaService = visitaService;
             this._eventoRecomendacaoPy = eventoRecomendacaoPy;
+            this.sharedInfo = sharedInfo;
         }
 
        
         
 
-        public async Task<EventosListaViewModel> GetAllAsync()
+        public async Task<IList<ItemEvento>> GetAllAsync()
         {
-            return new EventosListaViewModel
-            {
-                Eventos = await _eventoCrudService.GetAllAsync()
-            };
+            var eventos = await _eventoCrudService.GetAllAsync();
+
+            return Mapper.Map<IList<ItemEvento>>(eventos);
 
         }
-        public async Task<EventosListaViewModel> GetAllPageAsync(int page,int qtd)
+        public async Task<IList<ItemEvento>> GetAllPageAsync(int page,int qtd)
         {
-            return new EventosListaViewModel
-            {
-                Eventos = await _eventoCrudService.GetAllPageAsync(page,qtd)
-            };
 
+            var eventos = await _eventoCrudService.GetAllPageAsync(page, qtd);
+
+
+            return Mapper.Map<IList<ItemEvento>>(eventos);
+
+        }
+
+        public async Task<IList<string>> GetAllTagsAsync()
+        {
+            var tags = await _eventoCrudService.GetAllTagsAsync();
+            return tags;
         }
 
         public async Task<Evento> GetAsync(int key)
         {
             var retorno = await _eventoCrudService.GetAsync((key));
-            await _usuarioRecomendacaoService.AddMovimentacaoAsync(new MovimentacaoVisita
+            try
             {
-                usuario = SharedInfo.CodUsuario,
-                evento = key.ToString(),
-                status = "1"
-            });
+                await _usuarioRecomendacaoService.AddMovimentacaoAsync(new MovimentacaoVisita
+                {
+                    usuario = sharedInfo.CodUsuario,
+                    evento = key.ToString(),
+                    status = "1"
+                });
+            }
+            catch (Exception ex)
+            {
+            }
             return retorno;
                
         }
@@ -100,7 +117,7 @@ namespace TCCApi.FachadeApi.Negocio
         public async Task<IList<ItemEvento>> GetEventosRecomendacoesAsync()
         {
 
-            var listaEventosCodigo = await _usuarioRecomendacaoService.GetAsync(SharedInfo.CodUsuario);
+            var listaEventosCodigo = await _usuarioRecomendacaoService.GetAsync(sharedInfo.CodUsuario);
             var listaEventos = new List<ItemEvento>();
             foreach (var cod in listaEventosCodigo)
             {
@@ -117,7 +134,7 @@ namespace TCCApi.FachadeApi.Negocio
         public async Task<IList<ItemEvento>> GetEventosUltimosVisitadosAsync()
         {
            
-                var visitas = await _visitaService.GetUltimasVisitasAsync(SharedInfo.CodUsuario);
+                var visitas = await _visitaService.GetUltimasVisitasAsync(sharedInfo.CodUsuario);
 
             var listaEventos = new List<ItemEvento>();
             foreach (var visita in visitas)
@@ -162,7 +179,7 @@ namespace TCCApi.FachadeApi.Negocio
 
         public async Task<Evento> PostAsync(Evento evento)
         {
-            evento.IdEmpresa = SharedInfo.CodEmpresa;
+            evento.IdEmpresa = sharedInfo.CodEmpresa;
             var eventoRet = await _eventoCrudService.PostAsync(evento);
             await _eventoRecomendacaoPy.PostAsync(eventoRet);
             return eventoRet;

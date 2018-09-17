@@ -10,8 +10,8 @@ using TCCApi.VendaApi.Dados;
 namespace TCCApi.VendaApi.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20180908013805_initialmigration")]
-    partial class initialmigration
+    [Migration("20180917024843_modoPagAdd")]
+    partial class modoPagAdd
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,21 +26,27 @@ namespace TCCApi.VendaApi.Migrations
 
                     b.Property<string>("Celular");
 
+                    b.Property<int>("CodStatus");
+
                     b.Property<string>("Cpf");
 
                     b.Property<DateTime>("DataCompra");
+
+                    b.Property<DateTime>("DataEvento");
 
                     b.Property<string>("Ddd");
 
                     b.Property<string>("Descricao");
 
+                    b.Property<string>("DescricaoStatus");
+
                     b.Property<string>("EmailComprador");
+
+                    b.Property<string>("GuidCompra");
 
                     b.Property<string>("GuidEmpresa");
 
                     b.Property<string>("GuidUsuario");
-
-                    b.Property<string>("HashComprador");
 
                     b.Property<string>("ItemID");
 
@@ -50,15 +56,42 @@ namespace TCCApi.VendaApi.Migrations
 
                     b.Property<string>("NomeEmpresa");
 
-                    b.Property<int>("Qtd");
+                    b.Property<int?>("PagamentoId");
 
-                    b.Property<string>("Status");
+                    b.Property<int>("Qtd");
 
                     b.Property<double>("Valor");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Eventos");
+                    b.HasIndex("PagamentoId");
+
+                    b.ToTable("Compras");
+                });
+
+            modelBuilder.Entity("TCCApi.VendaApi.Models.DTO.PagamentoDto", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Cartao");
+
+                    b.Property<string>("Cvv");
+
+                    b.Property<string>("NomeTitular");
+
+                    b.Property<string>("Vencimento");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PagamentoDto");
+                });
+
+            modelBuilder.Entity("TCCApi.VendaApi.Models.DTO.CompraDTO", b =>
+                {
+                    b.HasOne("TCCApi.VendaApi.Models.DTO.PagamentoDto", "Pagamento")
+                        .WithMany()
+                        .HasForeignKey("PagamentoId");
                 });
 #pragma warning restore 612, 618
         }

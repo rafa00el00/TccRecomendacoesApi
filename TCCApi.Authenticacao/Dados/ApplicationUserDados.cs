@@ -26,13 +26,13 @@ namespace TCCApi.Authenticacao.Dados
         }
         public virtual async Task<ApplicationUser> AddAsync(ApplicationUser applicationUser,string password)
         {
-            var claimToRemove = applicationUser.Claims.FirstOrDefault(c => c.ClaimType == "DataCriacao");
+            var claimToRemove = applicationUser.Claims.FirstOrDefault(c => c.ClaimType == "datacriacao");
             applicationUser.Claims.Remove(claimToRemove);
-            applicationUser.Claims.Add(new MyClaim("DataCriacao", DateTime.Now.ToString("yyyy-MM-dd")));
+            applicationUser.Claims.Add(new MyClaim("datacriacao", DateTime.Now.ToString("yyyy-MM-dd")));
             var user = await _userManager.CreateAsync(applicationUser, password);
             if (user.Succeeded)
             {
-                applicationUser.Claims.Add(new MyClaim("CodEmpresa", applicationUser.Id.ToString()));
+                applicationUser.Claims.Add(new MyClaim("codempresa", applicationUser.Id.ToString()));
                 await _userManager.AddClaimsAsync(applicationUser, applicationUser.Claims.Select(u => new Claim(u.ClaimType, u.ClaimValue)));
 
             }

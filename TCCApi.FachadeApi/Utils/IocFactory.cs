@@ -12,6 +12,7 @@ namespace TCCApi.FachadeApi.Utils
         {
             InitializeNegocio(services);
             InitializeServices(services);
+            services.AddScoped<SharedInfo>();
         }
 
         private void InitializeNegocio(IServiceCollection services)
@@ -19,6 +20,7 @@ namespace TCCApi.FachadeApi.Utils
             services.AddScoped<IEventoNegocio, EventoNegocio>();
             services.AddScoped<IEmpresaNegocio, EmpresaNegocio>();
             services.AddScoped<IAuthNegocio, AuthNegocio>();
+            services.AddScoped<ICompraNegocio, CompraNegocio>();
 
         }
 
@@ -32,7 +34,8 @@ namespace TCCApi.FachadeApi.Utils
             services.AddScoped<IEmpresaService, EmpresaService>();
             services.AddScoped<IEventoRecomendacaoPyService, EventoRecomendacaoPyService>();
             services.AddScoped<IAuthService, AuthService>();
-            
+            services.AddScoped<ICompraService, CompraService>();
+
 
 
         }

@@ -2,12 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using TCCApi.VendaApi.Dados;
+using TCCApi.VendaApi.Models;
+using TCCApi.VendaApi.Negocio;
 using TCCApi.VendaApi.Services;
 
 namespace TCCApi.VendaApi
@@ -25,7 +30,12 @@ namespace TCCApi.VendaApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<IConfiguration>(Configuration);
+            services.AddDbContext<MyDbContext>();
+            services.AddScoped<DbContext, MyDbContext>();
             services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<ICompraNegocio, CompraNegocio>();
+            services.AddScoped<ICompraDados, CompraDados>();
+            ConfigureAuthMapper();
             services.AddMvc();
         }
 
@@ -38,6 +48,14 @@ namespace TCCApi.VendaApi
             }
 
             app.UseMvc();
+        }
+
+        public void ConfigureAuthMapper()
+        {
+            Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMissingTypeMaps = true;
+            });
         }
     }
 }

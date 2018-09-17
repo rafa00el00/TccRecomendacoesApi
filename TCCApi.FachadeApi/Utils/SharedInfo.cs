@@ -6,13 +6,13 @@ using TCCApi.FachadeApi.Models;
 
 namespace TCCApi.FachadeApi.Utils
 {
-    public static class SharedInfo
+    public class SharedInfo
     {
-        public static string CodUsuario;
-        public static string Token;
-        public static int CodEmpresa;
-        public static Empresa empresa { get; set; }
-        public static Usuario usuario { get; set; }
+        public string CodUsuario;
+        public string Token;
+        public int CodEmpresa;
+        public Empresa empresa { get; set; }
+        public Usuario usuario { get; set; }
 
     }
 }

@@ -45,7 +45,11 @@ namespace TCCApi.FachadeApi
                  options.ApiName = "api1";
              });
 
-
+            services.AddCors(config =>
+            {
+                config.AddPolicy("default",
+                    cors => cors.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,6 +62,7 @@ namespace TCCApi.FachadeApi
 
             app.UseMvc();
 
+            app.UseCors("default");
             
 
 

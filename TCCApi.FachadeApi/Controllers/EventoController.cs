@@ -28,15 +28,15 @@ namespace TCCApi.FachadeApi.Controllers
         }
 
         [Route("Page/{PageNum}/{qtd}")]
-        public async Task<ActionResult> GetAllPageAsync([FromRoute]int PageNum,[FromRoute]int qtd)
+        public async Task<ActionResult> GetAllPageAsync([FromRoute]int PageNum, [FromRoute]int qtd)
         {
-            return Ok(await _eventoNegocio.GetAllPageAsync(PageNum,qtd));
+            return Ok(await _eventoNegocio.GetAllPageAsync(PageNum, qtd));
         }
 
         [Route("{key}")]
         public async Task<Evento> GetAsync([FromRoute] int key)
         {
-            return  await _eventoNegocio.GetAsync(key);
+            return await _eventoNegocio.GetAsync(key);
         }
 
         [Route("Recomendacoes")]
@@ -53,8 +53,8 @@ namespace TCCApi.FachadeApi.Controllers
         public async Task<ActionResult> GetEventosEmAltaAsync()
         {
             var eventos = await _eventoNegocio.GetEventosEmAltaAsync();
-            if(eventos == null)
-                return NotFound(new { message = "Eventos não encontrados"});
+            if (eventos == null)
+                return NotFound(new { message = "Eventos não encontrados" });
 
             return Ok(eventos);
         }
@@ -86,7 +86,7 @@ namespace TCCApi.FachadeApi.Controllers
             if (evento == default(Evento))
                 return BadRequest(new { message = "Não foi possivel cadastrar evento" });
 
-            return Created("",await _eventoNegocio.PostAsync(evento));
+            return Created("", await _eventoNegocio.PostAsync(evento));
         }
 
         [Route("Tags")]
@@ -94,5 +94,56 @@ namespace TCCApi.FachadeApi.Controllers
         {
             return Ok(await _eventoNegocio.GetAllTagsAsync());
         }
+
+        [Route("Empresa")]
+        public async Task<ActionResult> GetEventosEmpresaAsync()
+        {
+            var eventos = await _eventoNegocio.GetPorEmpresaAsync();
+            if (eventos == null)
+                return NotFound(new { message = "Eventos não encontrados" });
+
+            return Ok(eventos);
+        }
+
+        public class RakeObject
+        {
+            public string Texto { get; set; }
+            public IList<string> Tags { get; set; }
+        }
+
+        [Route("Rake")]
+        [HttpPost]
+        public async Task<IActionResult> GetRakeText([FromBody]RakeObject rakeObject)
+        {
+            if (rakeObject is default(RakeObject) || string.IsNullOrWhiteSpace(rakeObject.Texto))
+                return BadRequest(new { message = "Objeto em branco" });
+
+
+            var tags = _eventoNegocio.TextToTags(rakeObject.Texto);
+
+            if (tags == null)
+                return NotFound(new { message = "Não foram geradas tags" });
+            return Ok(tags);
+
+        }
+
+        [Route("RecomendacaoPublicoAlvo")]
+        [HttpPost]
+        public async Task<IActionResult> GetRecomendacaoPublicoAlvo([FromBody]RakeObject rakeObject)
+        {
+            if (rakeObject is default(RakeObject) || rakeObject.Tags is null || rakeObject.Tags.Count <= 0)
+                return BadRequest(new { message = "Objeto em branco" });
+
+
+            var tags = _eventoNegocio.RecomendacaoPublicoAlvoAsync(rakeObject.Tags);
+
+            if (tags == null)
+                return NotFound(new { message = "Não foram geradas tags" });
+            return Ok(tags);
+
+        }
+
+        
+
     }
 }

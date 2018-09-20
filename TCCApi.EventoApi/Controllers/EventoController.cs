@@ -23,7 +23,14 @@ namespace TCCApi.EventoApi.Controllers
             return Ok(_eventoNegocio.GetAllTags());
         }
 
+        [Route("Empresa/{codEmpresa}")]
+        public IActionResult GetEmpresa([FromRoute]int codEmpresa)
+        {
+            return Ok(_eventoNegocio.GetEmpresaAsync(codEmpresa));
+        }
 
-        
+
+
+
     }
 }

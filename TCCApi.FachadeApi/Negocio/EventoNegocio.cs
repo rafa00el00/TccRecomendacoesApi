@@ -21,12 +21,16 @@ namespace TCCApi.FachadeApi.Negocio
         Task<IList<ItemEvento>> GetEventosUltimosVisitadosAsync();
         Task<IList<ItemEvento>> GetRecomendacoesPorEventoAsync(string keyEvento);
 
-        Task<IList<Evento>> GetPorEmpresaAsync(int key);
+        Task<IList<Evento>> GetPorEmpresaAsync();
         Task<Evento> PostAsync(Evento evento);
         Task<Evento> PutAsync(Evento evento);
         Task<IList<ItemEvento>> GetAllPageAsync(int pageNum, int qtd);
 
         Task<IList<string>> GetAllTagsAsync();
+        Task<IList<string>> TextToTags(string textos);
+        Task<IList<string>> RecomendacaoPublicoAlvoAsync(IList<string> tags);
+        
+        
     }
 
     public class EventoNegocio : IEventoNegocio
@@ -36,6 +40,7 @@ namespace TCCApi.FachadeApi.Negocio
         private readonly IUsuarioRecomendacaoService _usuarioRecomendacaoService;
         private readonly IVisitaService _visitaService;
         private readonly IEventoRecomendacaoPyService _eventoRecomendacaoPy;
+        private readonly ITextoRecomendacaoService _textoRecomendacaoService;
         private readonly SharedInfo sharedInfo;
 
         public EventoNegocio(IEventoCrudService eventoCrudService,
@@ -43,6 +48,7 @@ namespace TCCApi.FachadeApi.Negocio
             IUsuarioRecomendacaoService usuarioRecomendacaoService,
             IVisitaService visitaService,
             IEventoRecomendacaoPyService eventoRecomendacaoPy,
+            ITextoRecomendacaoService textoRecomendacaoService,
             SharedInfo sharedInfo)
         {
             this._eventoCrudService = eventoCrudService;
@@ -50,6 +56,7 @@ namespace TCCApi.FachadeApi.Negocio
             this._usuarioRecomendacaoService = usuarioRecomendacaoService;
             this._visitaService = visitaService;
             this._eventoRecomendacaoPy = eventoRecomendacaoPy;
+            this._textoRecomendacaoService = textoRecomendacaoService;
             this.sharedInfo = sharedInfo;
         }
 
@@ -148,9 +155,9 @@ namespace TCCApi.FachadeApi.Negocio
             return listaEventos;
         }
 
-        public async Task<IList<Evento>> GetPorEmpresaAsync(int key)
+        public async Task<IList<Evento>> GetPorEmpresaAsync()
         {
-            return await _eventoCrudService.GetPorEmpresaAsync(key);
+            return await _eventoCrudService.GetPorEmpresaAsync(sharedInfo.CodEmpresa);
         }
 
         public async Task<IList<ItemEvento>> GetRecomendacoesPorEventoAsync(string keyEvento)
@@ -180,6 +187,7 @@ namespace TCCApi.FachadeApi.Negocio
         public async Task<Evento> PostAsync(Evento evento)
         {
             evento.IdEmpresa = sharedInfo.CodEmpresa;
+            evento.EmpresaNome = sharedInfo.empresa.Name;
             var eventoRet = await _eventoCrudService.PostAsync(evento);
             await _eventoRecomendacaoPy.PostAsync(eventoRet);
             return eventoRet;
@@ -189,6 +197,25 @@ namespace TCCApi.FachadeApi.Negocio
         {
             return await _eventoCrudService.PutAsync(evento);
         }
+
+        public async Task<IList<string>> RecomendacaoPublicoAlvoAsync(IList<string> tags)
+        {
+            return await Task.Run(() => {
+                return new List<string>
+            {
+                "teste","abacaxi","laranja"
+            };
+            });
+        }
+
+        public async Task<IList<string>> TextToTags(string textos)
+        {
+            var tags = await _textoRecomendacaoService.PostTextoToTagsAsync(textos);
+
+            return tags;
+        }
+
+
     }
 
 

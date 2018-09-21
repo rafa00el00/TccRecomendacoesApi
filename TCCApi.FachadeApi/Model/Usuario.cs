@@ -35,7 +35,7 @@ namespace TCCApi.FachadeApi.Models
 
             foreach (var prp in objeto.GetType().GetProperties())
             {
-                if (prp.Name.ToUpper().Equals("PASSWORD") || prp.GetValue(objeto) == null)
+                if (prp.Name.ToUpper().Equals("PASSWORD") || prp.GetValue(objeto) == null || prp.Name.ToUpper().Equals("SUB"))
                     continue;
 
                 if(prp.PropertyType.Name.Equals("DateTime"))

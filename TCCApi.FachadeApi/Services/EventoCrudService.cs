@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using TCCApi.FachadeApi.Model;
 
@@ -120,7 +121,7 @@ namespace TCCApi.FachadeApi.Services
         public async Task<Evento> PutAsync(Evento evento)
         {
             var http = new HttpClient();
-            var content = new StringContent(JsonConvert.SerializeObject(evento));
+            var content = new StringContent(JsonConvert.SerializeObject(evento),Encoding.Default,"application/json");
             var response = await http.PutAsync(BaseUrl + "/Evento", content);
 
             if (response.StatusCode == System.Net.HttpStatusCode.OK)

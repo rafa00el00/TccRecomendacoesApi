@@ -89,6 +89,16 @@ namespace TCCApi.FachadeApi.Controllers
             return Created("", await _eventoNegocio.PostAsync(evento));
         }
 
+        [HttpPut]
+        [HttpPatch]
+        public async Task<IActionResult> PutEventoAsync([FromBody]Evento evento)
+        {
+            if (evento == default(Evento))
+                return BadRequest(new { message = "Não foi possivel cadastrar evento" });
+
+            return Ok(await _eventoNegocio.PutAsync(evento));
+        }
+
         [Route("Tags")]
         public async Task<IActionResult> GetAllTagsAsync()
         {
@@ -119,7 +129,7 @@ namespace TCCApi.FachadeApi.Controllers
                 return BadRequest(new { message = "Objeto em branco" });
 
 
-            var tags = _eventoNegocio.TextToTags(rakeObject.Texto);
+            var tags = await _eventoNegocio.TextToTags(rakeObject.Texto);
 
             if (tags == null)
                 return NotFound(new { message = "Não foram geradas tags" });
@@ -135,7 +145,7 @@ namespace TCCApi.FachadeApi.Controllers
                 return BadRequest(new { message = "Objeto em branco" });
 
 
-            var tags = _eventoNegocio.RecomendacaoPublicoAlvoAsync(rakeObject.Tags);
+            var tags = await _eventoNegocio.RecomendacaoPublicoAlvoAsync(rakeObject.Tags);
 
             if (tags == null)
                 return NotFound(new { message = "Não foram geradas tags" });

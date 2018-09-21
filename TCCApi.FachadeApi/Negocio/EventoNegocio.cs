@@ -21,7 +21,7 @@ namespace TCCApi.FachadeApi.Negocio
         Task<IList<ItemEvento>> GetEventosUltimosVisitadosAsync();
         Task<IList<ItemEvento>> GetRecomendacoesPorEventoAsync(string keyEvento);
 
-        Task<IList<Evento>> GetPorEmpresaAsync();
+        Task<IList<ItemEvento>> GetPorEmpresaAsync();
         Task<Evento> PostAsync(Evento evento);
         Task<Evento> PutAsync(Evento evento);
         Task<IList<ItemEvento>> GetAllPageAsync(int pageNum, int qtd);
@@ -155,9 +155,10 @@ namespace TCCApi.FachadeApi.Negocio
             return listaEventos;
         }
 
-        public async Task<IList<Evento>> GetPorEmpresaAsync()
+        public async Task<IList<ItemEvento>> GetPorEmpresaAsync()
         {
-            return await _eventoCrudService.GetPorEmpresaAsync(sharedInfo.CodEmpresa);
+            var eventos = await _eventoCrudService.GetPorEmpresaAsync(sharedInfo.CodEmpresa);
+            return Mapper.Map<IList<ItemEvento>>(eventos);
         }
 
         public async Task<IList<ItemEvento>> GetRecomendacoesPorEventoAsync(string keyEvento)

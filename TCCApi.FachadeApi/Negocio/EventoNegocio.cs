@@ -97,6 +97,12 @@ namespace TCCApi.FachadeApi.Negocio
                     evento = key.ToString(),
                     status = "1"
                 });
+                await _visitaService.PostVisita(new VisitaTO
+                {
+                    DataVisita = DateTime.Now,
+                    GuidUsuario = sharedInfo.CodUsuario,
+                    IdEvento = key
+                });
             }
             catch (Exception ex)
             {
@@ -191,6 +197,7 @@ namespace TCCApi.FachadeApi.Negocio
             evento.EmpresaNome = sharedInfo.empresa.Name;
             var eventoRet = await _eventoCrudService.PostAsync(evento);
             await _eventoRecomendacaoPy.PostAsync(eventoRet);
+            await _eventoRecomendacaoPy.GetRunMakeRecomendacao();
             return eventoRet;
         }
 
@@ -201,12 +208,16 @@ namespace TCCApi.FachadeApi.Negocio
 
         public async Task<IList<string>> RecomendacaoPublicoAlvoAsync(IList<string> tags)
         {
-            return await Task.Run(() => {
-                return new List<string>
+
+            var codigos = await _eventoRecomendacaoPy.GetCodigoEventosSimilaresAsync(tags.ToArray());
+            var publicos = new List<string>();
+            foreach (var item in codigos)
             {
-                "teste","abacaxi","laranja"
-            };
-            });
+                var evento = await _eventoCrudService.GetAsync(int.Parse(item));
+                publicos.Add(evento.PublicoAlvo);
+            }
+
+            return publicos.Distinct().ToList();
         }
 
         public async Task<IList<string>> TextToTags(string textos)

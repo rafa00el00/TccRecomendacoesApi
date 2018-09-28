@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using TCCApi.FachadeApi.Model.TO;
 
@@ -68,7 +69,7 @@ namespace TCCApi.FachadeApi.Services
         public async Task PostVisita(VisitaTO visita)
         {
             var http = new HttpClient();
-            var content = new StringContent(JsonConvert.SerializeObject(visita));
+            var content = new StringContent(JsonConvert.SerializeObject(visita),Encoding.Default, "application/json");
 
             var response = await http.PostAsync(BaseUrl + "/Visita", content);
 

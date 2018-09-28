@@ -87,14 +87,15 @@ namespace TCCApi.FachadeApi.Services
             var content = new StringContent(JsonConvert.SerializeObject(compra), Encoding.Default, "application/json");
 
             var response = await http.PostAsync(BaseUrl + "/api/Auth/Empresa", content);
-
-            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            Console.WriteLine(response.StatusCode);
+            Console.WriteLine(response.ReasonPhrase);
+            if (response.IsSuccessStatusCode)
             {
                 return JsonConvert.DeserializeObject<ApplicationUserTO>(await response.Content.ReadAsStringAsync());
             }
             else
             {
-                throw new Exception("Falha ao adicionar a visita");
+                throw new Exception(await response.Content.ReadAsStringAsync());
             }
         }
 

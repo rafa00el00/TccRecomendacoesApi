@@ -4,6 +4,6 @@
     {
         public string usuario { get; set; }
         public string evento { get; set; }
-        public string status { get; set; }
+        public int status { get; set; }
     }
 }

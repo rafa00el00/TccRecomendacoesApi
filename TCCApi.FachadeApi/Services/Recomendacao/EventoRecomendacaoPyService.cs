@@ -33,7 +33,7 @@ namespace TCCApi.FachadeApi.Services.Recomendacao
             }
             else
             {
-                throw new Exception("Falha ao buscar o Evento ");
+                throw new Exception(await response.Content.ReadAsStringAsync());
             }
         }
 
@@ -64,7 +64,7 @@ namespace TCCApi.FachadeApi.Services.Recomendacao
             }
             else
             {
-                throw new Exception("Falha ao buscar o Evento ");
+                throw new Exception(await response.Content.ReadAsStringAsync());
             }
         }
     }

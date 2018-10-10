@@ -36,13 +36,13 @@ namespace TCCApi.FachadeApi.Services.Recomendacao
 
             var response = await http.PostAsync(BaseUrl + "/AddMovimentacao", content);
 
-            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            if (response.IsSuccessStatusCode)
             {
 
             }
             else
             {
-                throw new Exception("Falha ao adicionar a visita");
+                throw new Exception(await response.Content.ReadAsStringAsync());
             }
         }
 
@@ -58,7 +58,7 @@ namespace TCCApi.FachadeApi.Services.Recomendacao
             }
             else
             {
-                throw new Exception("Falha ao buscar Recomendações");
+                throw new Exception(await response.Content.ReadAsStringAsync());
             }
 
 

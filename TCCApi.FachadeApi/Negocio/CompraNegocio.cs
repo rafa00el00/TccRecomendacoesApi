@@ -9,8 +9,6 @@ using TCCApi.FachadeApi.Utils;
 
 namespace TCCApi.FachadeApi.Negocio
 {
-
-
     public interface ICompraNegocio
     {
 
@@ -18,6 +16,9 @@ namespace TCCApi.FachadeApi.Negocio
         Task<IList<ItemCompra>> GetListaComprasAsync();
         Task<Compra> PostCompraAsync(Compra compra);
     }
+
+
+
     public class CompraNegocio : ICompraNegocio
     {
         private readonly ICompraService _compraService;
@@ -38,7 +39,7 @@ namespace TCCApi.FachadeApi.Negocio
             return await _compraService.GetAsync(key);
         }
 
-      
+
         public async Task<IList<ItemCompra>> GetListaComprasAsync()
         {
             var compras = await _compraService.GetListaCompras(sharedInfo.CodUsuario);
@@ -61,16 +62,16 @@ namespace TCCApi.FachadeApi.Negocio
             compra.CodStatus = 3;
             compra.DescricaoStatus = "Pre-aprovado";
 
-        
-        var retorno =  await _compraService.PostCompra(compra);
-            await _usuarioRecomendacaoService.AddMovimentacaoAsync(new MovimentacaoVisita {
+
+            var retorno = await _compraService.PostCompra(compra);
+            await _usuarioRecomendacaoService.AddMovimentacaoAsync(new MovimentacaoVisita
+            {
                 usuario = sharedInfo.CodUsuario,
                 evento = compra.ItemID.ToString(),
-                status = "2"
+                status = 2
             });
             return retorno;
         }
+
     }
-
-
 }

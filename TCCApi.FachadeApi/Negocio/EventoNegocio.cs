@@ -95,7 +95,7 @@ namespace TCCApi.FachadeApi.Negocio
                 {
                     usuario = sharedInfo.CodUsuario,
                     evento = key.ToString(),
-                    status = "1"
+                    status = 1
                 });
                 await _visitaService.PostVisita(new VisitaTO
                 {

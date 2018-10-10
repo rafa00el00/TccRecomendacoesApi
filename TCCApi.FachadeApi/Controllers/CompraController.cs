@@ -5,6 +5,7 @@ using TCCApi.FachadeApi.Negocio;
 
 namespace TCCApi.FachadeApi.Controllers
 {
+
     [Produces("application/json")]
     [Route("api/Compra")]
     public class CompraController : Controller

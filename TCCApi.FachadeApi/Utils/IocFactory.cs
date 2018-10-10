@@ -21,6 +21,7 @@ namespace TCCApi.FachadeApi.Utils
             services.AddScoped<IEmpresaNegocio, EmpresaNegocio>();
             services.AddScoped<IAuthNegocio, AuthNegocio>();
             services.AddScoped<ICompraNegocio, CompraNegocio>();
+            services.AddScoped<IFeedbackNegocio, FeedbackNegocio>();
 
         }
 
@@ -35,6 +36,7 @@ namespace TCCApi.FachadeApi.Utils
             services.AddScoped<IEventoRecomendacaoPyService, EventoRecomendacaoPyService>();
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<ICompraService, CompraService>();
+            services.AddScoped<IFeedbackService, FeedbackService>();
 
 
 

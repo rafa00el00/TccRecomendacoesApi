@@ -66,17 +66,25 @@ namespace TCCApi.FachadeApi.Services
         public async Task<ApplicationUserTO> PostUsuario(ApplicationUserTO compra)
         {
             var http = new HttpClient();
+            Console.WriteLine("Entrou Aqui");
+            Console.WriteLine(compra);
             var content = new StringContent(JsonConvert.SerializeObject(compra),Encoding.Default, "application/json");
-
+            Console.WriteLine("Serializar");
+            Console.WriteLine(JsonConvert.SerializeObject(compra));
+            Console.WriteLine(BaseUrl + "/api/Auth/Usuario");
             var response = await http.PostAsync(BaseUrl + "/api/Auth/Usuario", content);
 
+            Console.WriteLine(response.ReasonPhrase);
             if (response.IsSuccessStatusCode)
             {
-                return JsonConvert.DeserializeObject<ApplicationUserTO>(await response.Content.ReadAsStringAsync());
+                var teste = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(teste);
+                return JsonConvert.DeserializeObject<ApplicationUserTO>(teste);
             }
             else
             {
                 var teste = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(teste);
                 throw new ArgumentException(teste);
             }
         }
@@ -101,6 +109,7 @@ namespace TCCApi.FachadeApi.Services
 
         public async Task<TokenResult> DoLogin(string email, string password, string type)
         {
+            Console.WriteLine("Do Login");
             var http = new HttpClient();
             var content = new FormUrlEncodedContent(new List<KeyValuePair<string, string>>{
                 new KeyValuePair<string, string>("username", email),

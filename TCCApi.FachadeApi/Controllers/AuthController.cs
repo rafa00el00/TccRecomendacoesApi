@@ -57,14 +57,14 @@ namespace TCCApi.FachadeApi.Controllers
 
         [HttpPost]
         [Route("Usuario")]
-        public IActionResult CadastroUsuario([FromBody]Usuario usuario)
+        public async Task<IActionResult> CadastroUsuarioAsync([FromBody]Usuario usuario)
         {
             if (usuario == default(Usuario))
                 return BadRequest(new { message = "Informe o Usuario" });
 
             try
             {
-                var r = _authNegocio.RegisterUsuario(usuario);
+                var r = await _authNegocio.RegisterUsuario(usuario);
                 return Ok(r);
             }
             catch (System.Exception ex)
@@ -78,12 +78,12 @@ namespace TCCApi.FachadeApi.Controllers
 
         [HttpPost]
         [Route("Empresa")]
-        public IActionResult CadastroEmpresa([FromBody]Empresa empresa)
+        public async Task<IActionResult> CadastroEmpresaAsync([FromBody]Empresa empresa)
         {
             if (empresa == null || empresa == default(Empresa))
                 return BadRequest(new { message = "Informe o Usuario" });
 
-            var r = _authNegocio.RegisterEmpresa(empresa);
+            var r = await _authNegocio.RegisterEmpresa(empresa);
 
             return Ok(r);
         }

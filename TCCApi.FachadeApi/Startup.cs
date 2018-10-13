@@ -67,7 +67,7 @@ namespace TCCApi.FachadeApi
             });
 
             app.UseMvc();
-
+ 
             app.UseCors("default");
             
 

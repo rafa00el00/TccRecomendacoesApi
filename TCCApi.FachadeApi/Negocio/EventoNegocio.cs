@@ -17,6 +17,7 @@ namespace TCCApi.FachadeApi.Negocio
         Task<Evento> GetAsync(int key);
         Task<IList<ItemEvento>> GetAllAsync();
         Task<IList<ItemEvento>> GetEventosRecomendacoesAsync();
+        Task<IList<ItemEvento>> GetEventosRecomendacoesTagsAsync();
         Task<IList<ItemEvento>> GetEventosEmAltaAsync();
         Task<IList<ItemEvento>> GetEventosUltimosVisitadosAsync();
         Task<IList<ItemEvento>> GetRecomendacoesPorEventoAsync(string keyEvento);
@@ -131,6 +132,24 @@ namespace TCCApi.FachadeApi.Negocio
         {
 
             var listaEventosCodigo = await _usuarioRecomendacaoService.GetAsync(sharedInfo.CodUsuario);
+            var listaEventos = new List<ItemEvento>();
+            foreach (var cod in listaEventosCodigo)
+            {
+                var evento = await _eventoCrudService.GetAsync(int.Parse(cod));
+                if (evento == null)
+                    continue;
+                listaEventos.Add(Mapper.Map<ItemEvento>(evento));
+            }
+
+            return listaEventos;
+
+        }
+
+        public async Task<IList<ItemEvento>> GetEventosRecomendacoesTagsAsync()
+        {
+
+            var listaEventosCodigo = await _eventoRecomendacaoPy.GetCodigoEventosSimilaresAsync(sharedInfo.usuario.Tags?.ToArray() );
+            //_usuarioRecomendacaoService.GetAsync(sharedInfo.CodUsuario);
             var listaEventos = new List<ItemEvento>();
             foreach (var cod in listaEventosCodigo)
             {

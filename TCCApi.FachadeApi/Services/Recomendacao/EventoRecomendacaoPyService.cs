@@ -55,7 +55,9 @@ namespace TCCApi.FachadeApi.Services.Recomendacao
         public async Task<IList<string>> GetCodigoEventosSimilaresAsync(string[] tags)
         {
             var http = new HttpClient();
-            var content = new StringContent(JsonConvert.SerializeObject(new { evento = tags }), System.Text.Encoding.Default, "application/json");
+            var teste = new { evento = tags };
+            var jTeste = JsonConvert.SerializeObject(teste);
+            var content = new StringContent(JsonConvert.SerializeObject(teste), System.Text.Encoding.Default, "application/json");
             var response = await http.PostAsync(BaseUrl + "/SimilaresCodEvento", content);
 
             if (response.IsSuccessStatusCode)

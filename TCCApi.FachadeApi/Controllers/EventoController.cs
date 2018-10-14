@@ -49,6 +49,16 @@ namespace TCCApi.FachadeApi.Controllers
             return Ok(eventos);
         }
 
+        [Route("RecomendacoesTags")]
+        public async Task<ActionResult> GetEventosRecomendacoesTagsAsync()
+        {
+            var eventos = await _eventoNegocio.GetEventosRecomendacoesTagsAsync();
+            if (eventos == null)
+                return NotFound(new { message = "Eventos não encontrados" });
+
+            return Ok(eventos);
+        }
+
         [Route("EmAlta")]
         public async Task<ActionResult> GetEventosEmAltaAsync()
         {
